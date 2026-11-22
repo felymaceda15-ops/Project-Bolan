@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Bolan - Mini Chrome</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial; background: #4285f4; }
+.toolbar { padding: 10px; display: flex; gap: 8px; background: #3367d6; position: sticky; top: 0; z-index: 100; }
+.toolbar input { flex: 1; padding: 12px; border: none; border-radius: 25px; font-size: 15px; }
+.toolbar button { padding: 12px 18px; border: none; background: white; border-radius: 25px; font-weight: bold; cursor: pointer; }
+.quick { display: flex; gap: 8px; padding: 10px; background: #2a56c4; flex-wrap: wrap; position: sticky; top: 60px; z-index: 99; }
+.quick button { padding: 10px 14px; border: none; background: white; border-radius: 20px; font-weight: bold; cursor: pointer; display:flex; align-items:center; gap:6px; font-size:14px; }
+.info { text-align: center; color: white; padding: 20px; }
+.float-home { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: white; border: none; border-radius: 50%; font-size: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; z-index: 999; }
+
+#splash {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--splash-bg, #121212); display: none; flex-direction: column;
+  justify-content: center; align-items: center; z-index: 9999; color: white; animation: fadeIn 0.3s;
+}
+#splash img { width: 120px; height: 120px; border-radius: 20px; margin-bottom: 20px; background: white; padding: 10px; object-fit: contain; }
+#splash h2 { font-size: 28px; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="home()">X</button>
+  <input type="text" id="url" placeholder="type website..." value="https://chromedino.com">
+  <button onclick="Go()">Go</button>
+</div>
+
+<div class="quick">
+  <button onclick="go('https://youtube.com', 'YouTube', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/YouTube.png', '#FF0000')">▶️ YouTube</button>
+  <button onclick="go('https://facebook.com', 'Facebook', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/Facebook2.png', '#1877F2')">📘 FB</button>
+  <button onclick="go('https://instagram.com', 'Instagram', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/Instagram.png', '#E1306C')">📸 IG</button>
+  <button onclick="go('https://google.com', 'Google', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/Google.png', '#FFFFFF')">🔍 Google</button>
+  <button onclick="go('https://x.com', 'X', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/X.png', '#000000')">❌ X</button>
+  <button onclick="go('https://happymod.to', 'HappyMod', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/HappyMod.png', '#00C853')">😈 HappyMod</button>
+  <button onclick="go('https://chess.com', 'Chess.com', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/Chess.png', '#161512')">♟️ Chess</button>
+  <button onclick="go('https://chromedino.com', 'Chrome Dino', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/chromedino.png', '#F1F1F1')">🦖 Dino</button>
+  <button onclick="go('https://wikipedia.org', 'Wikipedia', 'https://raw.githubusercontent.com/felymaceda15-ops/Bolan-images/main/Wikipedia.png', '#FFFFFF')">📖 Wiki</button>
+</div>
+
+<div class="info">
+  <h2>Project Bolan - Mini Browser</h2>
+  <p>9 Shortcuts with 3s Splash Screen</p>
+</div>
+
+<button class="float-home" onclick="home()">X</button>
+
+<div id="splash">
+  <img id="splash-icon" src="" alt="icon">
+  <h2 id="splash-name">Website</h2>
+  <p>Opening in 3 seconds...</p>
+</div>
+
+<script>
+function go(url, name, icon, color) { 
+  showSplash(url, name, icon, color);
+}
+function showSplash(url, name, icon, color){
+  document.getElementById('splash-icon').src = icon;
+  document.getElementById('splash-name').innerText = name;
+  document.getElementById('splash').style.setProperty('--splash-bg', color);
+  document.getElementById('splash').style.display = 'flex';
+  setTimeout(function(){ window.location.href = url; }, 3000);
+}
+function Go(){ 
+  let url = document.getElementById('url').value;
+  if (!url.startsWith('http')) url = 'https://' + url;
+  window.location.href = url; 
+}
+function home() { 
+  window.location.href = 'project-bolan.html'; 
+}
+</script>
+</body>
+</html>
